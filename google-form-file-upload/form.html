@@ -1,0 +1,109 @@
+<!-- FORM FOR REIMBURSEMENT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="">
+
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+  <link href="https://cdn.rawgit.com/twbs/bootstrap/master/docs/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet" >
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+
+  <title>Reimbursement</title>
+</head>
+
+<body>
+  <div class="container">
+    <form id="myForm" class="form-horizontal" role="form">
+      <h2>Reimbursement Request Form</h2>
+      <p><em>Note that submitting this form may take a solid 15 seconds.</em></p>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Full Name:</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="myName" placeholder="First Last (Cheque will be written out to this)" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Category:</label>
+        <div class="col-sm-9">
+        <select class = "form-control" name="myProgram">
+          <option value="iGT Costs">iGT Costs</option>
+          <option value="iGT Investments">iGT Investments</option>
+          <option value="oGT Costs">oGT Costs</option>
+          <option value="oGT Investments">oGT Investments</option>
+          <option value="oGC Cost">oGT Costs</option>
+          <option value="oGC Investments">oGT Investments</option>
+          <option value="Marketing Costs">Marketing Costs</option>
+          <option value="TM Costs">TM Costs</option>
+          <option value="Finance Costs">Finance Costs</option>
+          <option value="Other">Other</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Description:</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="itemDescription" placeholder="Event Name - Item">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Amount Reimbursed:</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" name="myAmount" step="any" min="0" placeholder="10.00">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Date of Event (if applicable):</label>
+        <div class="col-sm-9">
+          <input type="date" class="form-control" name="eventDate" placeholder="dd/mm/yy">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Bank Details (Optional):</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="bankDetails" placeholder="Name, BSB, Account Number">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3">Evidence:</label>
+        <div class="col-sm-9">
+          <input type="file" class="form-control" name="myFile">
+        </div>
+      </div>
+
+      <input type="submit" class="form-control" value="Submit"
+             onclick="this.value='Uploading..';
+                      google.script.run.withSuccessHandler(fileUploaded)
+                      .uploadFiles(this.parentNode);
+                      return false;">
+    </form>
+  </div>
+
+  <h3><small><div class="container" id="output"></div></small></h3>
+
+  <script>
+    function fileUploaded(status) {
+        document.getElementById('myForm').style.display = 'none';
+        document.getElementById('output').innerHTML = status;
+    }
+  </script>
+</body>
+
+
+<style>
+</style>
+</html>
